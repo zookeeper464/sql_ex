@@ -1,0 +1,21 @@
+SELECT animal_type, COUNT (*) AS COUNT FROM animal_ins GROUP BY animal_type ORDER BY animal_type
+# animal_ins라는 표에서 animal_type과 count를 animal_type으로 묶고 animal_type 순서에 맞춰서 출력한다.
+# * 대신에 animal_type을 넣어도 성립
+# ORDER BY 뒤를 빼도 성립
+# AS COUNT를 왜 넣는지 알아보기
+
+SELECT name, COUNT (*) AS COUNT FROM animal_ins GROUP BY name HAVING COUNT(NAME) >= 2 ORDER BY name
+# animal_ins라는 표에서 name과 count를 name으로 묶고 count(name)의 갯수가 2개 이상인 행을 name의 순서에 따라서 출력한다.
+
+SELECT HOUR(datetime) AS HOUR, COUNT (*) AS COUNT FROM animal_outs
+WHERE HOUR(datetime)>=9 AND HOUR(datetime)<=19 GROUP BY HOUR(datetime) ORDER BY HOUR
+# animal_outs라는 표에서 datetime를 hour로 바꾸고 count를 hour로 묶고 hour이 9이상 19미만인 행을 hour순서에 따라서 출력한다.
+
+
+SET @hour := -1;
+SELECT (@hour := @hour + 1) as HOUR,
+(SELECT COUNT(*) FROM ANIMAL_OUTS WHERE HOUR(DATETIME) = @hour) as COUNT FROM ANIMAL_OUTS WHERE @hour < 23
+# SELECT (@hour := @hour +1) as HOUR은 인덱스 HOUR에서 hour가 1씩 증가 하면서 받게 하는 명령문
+#(SELECT COUNT(*) FROM amimal_outs WHERE HOUR(datetime) = @hour)은 animal_outs라는 표세서 @hour에 해당하는 HOUR의 행을 선택하는 명령문
+# :=는 비교연산자 =와 구분하기 위한 대입연산자다.
+#SET 옆에 변수명과 초기값을 설정할 수 있다. @를 사용한 변수는 프로시저가 종료되어도 유지된다.
