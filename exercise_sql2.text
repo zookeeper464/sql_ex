@@ -1,0 +1,11 @@
+SELECT MAX(datetime) AS "시간" FROM animal_ins
+# animal_ins라는 표에서 datatime 중 최댓값을 고른다. index를 "시간"이라 명한다.
+
+SELECT MIN(datetime) AS "시간" FROM animal_ins
+# animal_ins라는 표에서 datatime 중 최솟값을 고른다. index를 "시간"이라 명한다.
+
+SELECT COUNT(*) FROM animal_ins
+# animal_ins라는 표에서 자료의 갯수를 출력한다. index는 count(*)라 명한다.
+
+SELECT COUNT (DISTINCT name) FROM animal_ins WHERE name IS NOT NULL
+# animal_ins라는 표에서 name이 중복되는 부분을 NULL로 바꾸고 name 중에서 NULL이 아닌 행의 갯수를 출력한다. index는 COUNT (DISTINCT name)라 명한다.
