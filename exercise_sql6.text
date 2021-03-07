@@ -1,0 +1,16 @@
+SELECT ANIMAL_ID, NAME, SEX_UPON_INTAKE FROM ANIMAL_INS WHERE NAME IN ("Lucy","Ella","Pickle","Rogan","Sabrina","Mitty")
+# ANIMAL_INS라는 표에서 _ID,NAME,SEX_에 대해 이름이 "Lucy","Ella","Pickle","Rogan","Sabrina","Mitty"인 경우만 호출
+
+SELECT ANIMAL_ID, NAME FROM ANIMAL_INS WHERE NAME LIKE "%el%" AND ANIMAL_TYPE = "Dog" ORDER BY NAME
+# ANIMAL_INS라는 표에서 _ID,NAME에 대해 _TYPE이 "Dog"이고 이름에 "el"가 들어간 경우만 호출
+
+SELECT ANIMAL_ID, NAME, CASE WHEN SEX_UPON_INTAKE LIKE "%Neutered%" OR SEX_UPON_INTAKE LIKE "%Spayed%" THEN "O" ELSE "X" END AS "중성화"
+FROM ANIMAL_INS
+# ANIMAL_INS라는 표에서 _ID,NAME과 중성화라는 인덱스를 가져온다.
+# 중성화라는 인덱스는 SEX_에 Neutered 또는 Spayed가 들어가 있다면 O를 아니면 X를 호출한다.
+# 이때 OR 양쪽에 ~~LIKE를 꼭 다 써야한다. 아니면 OR뒷 문장을 그냥 문자그대로 받아들인다.
+
+SELECT I.ANIMAL_ID, I.NAME FROM ANIMAL_INS I LEFT JOIN ANIMAL_OUTS O ON I.ANIMAL_ID=O.ANIMAL_ID
+ORDER BY O.DATETIME - I.DATETIME DESC LIMIT 2
+# ANIMAL_INS와 _OUTS의 표를 _ID로 연결한다. O.DATETIME과 I.DATETIME의 차이를 내림차순으로 정렬한 뒤 2개를 호출한다.
+# 해당하는 I._ID와 I.NAME을 적는다.
