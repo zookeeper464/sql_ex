@@ -3,6 +3,7 @@ SELECT ANIMAL_ID, NAME, SEX_UPON_INTAKE FROM ANIMAL_INS WHERE NAME IN ("Lucy","E
 
 SELECT ANIMAL_ID, NAME FROM ANIMAL_INS WHERE NAME LIKE "%el%" AND ANIMAL_TYPE = "Dog" ORDER BY NAME
 # ANIMAL_INS라는 표에서 _ID,NAME에 대해 _TYPE이 "Dog"이고 이름에 "el"가 들어간 경우만 호출
+# NAME에 대해 오름차순으로 정렬한다.
 
 SELECT ANIMAL_ID, NAME, CASE WHEN SEX_UPON_INTAKE LIKE "%Neutered%" OR SEX_UPON_INTAKE LIKE "%Spayed%" THEN "O" ELSE "X" END AS "중성화"
 FROM ANIMAL_INS
@@ -14,3 +15,11 @@ SELECT I.ANIMAL_ID, I.NAME FROM ANIMAL_INS I LEFT JOIN ANIMAL_OUTS O ON I.ANIMAL
 ORDER BY O.DATETIME - I.DATETIME DESC LIMIT 2
 # ANIMAL_INS와 _OUTS의 표를 _ID로 연결한다. O.DATETIME과 I.DATETIME의 차이를 내림차순으로 정렬한 뒤 2개를 호출한다.
 # 해당하는 I._ID와 I.NAME을 적는다.
+
+SELECT ANIMAL_ID, NAME, DATE_FORMAT(DATETIME, "%Y-%m-%d") AS 날짜 FROM ANIMAL_INS ORDER BY ANIMAL_ID
+# ANIMAL_INS라는 표에서 _ID,NAME과 날짜라는 인덱스를 가져온다.
+# 중성화라는 인덱스는 해당 행의 DATETIME에서 0000년-00월-00일을 가져온다.
+# _ID의 오름차순으로 정렬한다.
+# 이때 %y는 00년, %M는 영문으로 월,%D는 기수로 일, %T는 00시:00분:00초를 의미한다.
+# DATE_FORMAT은 해당 날짜 변수에 대한 정보를 가져와 새로운 형식으로 바꾸어주는 것이다.
+
