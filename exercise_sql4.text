@@ -5,4 +5,4 @@ SELECT animal_id FROM animal_ins WHERE name IS NOT NULL
 # animal_ins라는 표에서 animal_id를 가져오는데 name이 NULL이 아닌 id만 가져온다. 이때 index는 id이다.
 
 SELECT animal_type, IFNULL(name, 'No name') AS name, sex_upon_intake FROM animal_ins ORDER BY animal_id
-# animal_ins라는 표에서 animal_id, name, sex_upon_intake를 가져오는데 name이 NULL인 경우 No name으로 고쳐서 출력한다. 이때 id로 정렬한다.
+# animal_ins라는 표에서 animal_id, name, sex_upon_intake를 가져오는데 name이 NULL인 경우 No name으로 고쳐서 출력한다. 이때 id 오름차순으로 정렬한다.
