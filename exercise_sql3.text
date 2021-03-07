@@ -1,15 +1,15 @@
 SELECT animal_type, COUNT (*) AS COUNT FROM animal_ins GROUP BY animal_type ORDER BY animal_type
-# animal_ins라는 표에서 animal_type과 count를 animal_type으로 묶고 animal_type 순서에 맞춰서 출력한다.
+# animal_ins라는 표에서 animal_type과 count를 animal_type으로 묶고 animal_type의 오름차순에 맞춰서 출력한다.
 # * 대신에 animal_type을 넣어도 성립
 # ORDER BY 뒤를 빼도 성립
 # AS COUNT를 왜 넣는지 알아보기
 
 SELECT name, COUNT (*) AS COUNT FROM animal_ins GROUP BY name HAVING COUNT(NAME) >= 2 ORDER BY name
-# animal_ins라는 표에서 name과 count를 name으로 묶고 count(name)의 갯수가 2개 이상인 행을 name의 순서에 따라서 출력한다.
+# animal_ins라는 표에서 name과 count를 name으로 묶고 count(name)의 갯수가 2개 이상인 행을 name의 오름차순에 따라서 출력한다.
 
 SELECT HOUR(datetime) AS HOUR, COUNT (*) AS COUNT FROM animal_outs
 WHERE HOUR(datetime)>=9 AND HOUR(datetime)<=19 GROUP BY HOUR(datetime) ORDER BY HOUR
-# animal_outs라는 표에서 datetime를 hour로 바꾸고 count를 hour로 묶고 hour이 9이상 19미만인 행을 hour순서에 따라서 출력한다.
+# animal_outs라는 표에서 datetime를 hour로 바꾸고 count를 hour로 묶고 hour이 9이상 19미만인 행을 hour의 오름차순에 따라서 출력한다.
 
 
 SET @hour := -1;
