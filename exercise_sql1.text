@@ -19,4 +19,4 @@ SELECT animal_id,name,datetime FROM animal_ins ORDER BY name ASC, datetime DESC
 # animal_ins라는 표를 name 오름차순 이후 datetime 내림차순으로 animal_id,name, datetime의 인덱스의 내용만 출력
 
 SELECT name FROM animal_ins ORDER BY datetime LIMIT 1
-# animal_ins라는 표를 name 내림차순으로 1개만 name의 인덱스의 내용만 출력
+# animal_ins라는 표를 name 오름차순으로 1개만 name의 인덱스의 내용만 출력
